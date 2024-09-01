@@ -1,0 +1,625 @@
+<html><style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+:root {
+  --primary-color: #6C63FF;
+  --secondary-color: #FF6584;
+  --accent-color: #FFD700;
+  --background-color: #121212;
+  --surface-color: #1E1E1E;
+  --text-color: #E0E0E0;
+  --text-color-secondary: #A0A0A0;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  line-height: 1.6;
+  overflow-x: hidden;
+  padding-top: 90px; /* Adjusted to accommodate fixed header and free banner */
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary-color);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--secondary-color);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.free-banner {
+  background-color: var(--accent-color);
+  color: var(--background-color);
+  text-align: center;
+  padding: 10px 0;
+  font-weight: bold;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1001;
+  overflow: hidden;
+}
+
+.free-banner::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transform: rotate(45deg);
+  animation: shine 3s infinite;
+}
+
+@keyframes shine {
+  0% {
+    left: -50%;
+    top: -50%;
+  }
+  100% {
+    left: 150%;
+    top: 150%;
+  }
+}
+
+header {
+  background-color: rgba(30, 30, 30, 0.95);
+  padding: 15px 0;
+  position: fixed;
+  width: 100%;
+  top: 40px; /* Positioned below the free banner */
+  left: 0;
+  z-index: 1000;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+.nav-links {
+  display: flex;
+}
+
+.nav-links a {
+  color: var(--text-color);
+  text-decoration: none;
+  margin-left: 20px;
+  transition: color 0.3s ease;
+  position: relative;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: -5px;
+  left: 0;
+  background-color: var(--secondary-color);
+  visibility: hidden;
+  transform: scaleX(0);
+  transition: all 0.3s ease-in-out;
+}
+
+.nav-links a:hover::after {
+  visibility: visible;
+  transform: scaleX(1);
+}
+
+.hero {
+  height: calc(100vh - 90px); /* Adjusted for fixed header and free banner */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(108, 99, 255, 0.2) 0%, rgba(255, 101, 132, 0.2) 100%);
+  z-index: -1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+}
+
+.hero-content h1 {
+  font-size: 3.5em;
+  margin-bottom: 20px;
+  color: var(--text-color);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.hero-content p {
+  font-size: 1.2em;
+  max-width: 600px;
+  margin: 0 auto 30px;
+  color: var(--text-color-secondary);
+}
+
+.cta-button {
+  display: inline-block;
+  background-color: var(--accent-color);
+  color: var(--background-color);
+  padding: 12px 30px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  margin: 0 10px;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: all 0.5s;
+}
+
+.cta-button:hover::before {
+  left: 100%;
+}
+
+.cta-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.features, .download-section, .tutorial-section {
+  padding: 100px 0;
+  position: relative;
+}
+
+.features::before,
+.download-section::before,
+.tutorial-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('data:image/svg+xml;charset=utf8,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"%3E%3Cpath fill="%236C63FF" fill-opacity="0.1" d="M0,96L48,106.7C96,117,192,139,288,138.7C384,139,480,117,576,117.3C672,117,768,139,864,154.7C960,171,1056,181,1152,170.7C1248,160,1344,128,1392,112L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"%3E%3C/path%3E%3C/svg%3E');
+  background-size: cover;
+  background-position: center;
+  z-index: -1;
+  opacity: 0.1;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+}
+
+.feature-card {
+  background-color: var(--surface-color);
+  border-radius: 15px;
+  padding: 30px;
+  text-align: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.feature-card:hover {
+  transform: translateY(-10px) rotate(2deg);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+}
+
+.feature-icon {
+  font-size: 2.5em;
+  color: var(--primary-color);
+  margin-bottom: 20px;
+}
+
+.tutorial-section {
+  text-align: center;
+}
+
+.tutorial-steps {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 40px;
+}
+
+.tutorial-step {
+  flex-basis: calc(33.333% - 40px);
+  background-color: var(--surface-color);
+  border-radius: 15px;
+  padding: 30px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.tutorial-step::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transform: rotate(45deg);
+  transition: all 0.5s;
+}
+
+.tutorial-step:hover::before {
+  left: 100%;
+  top: 100%;
+}
+
+.tutorial-step img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  transition: all 0.3s ease;
+}
+
+.tutorial-step:hover img {
+  transform: scale(1.05);
+}
+
+.tutorial-step h3 {
+  margin-bottom: 15px;
+  color: var(--primary-color);
+}
+
+.feature-highlight {
+  background-color: var(--secondary-color);
+  color: var(--text-color);
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-weight: bold;
+  display: inline-block;
+  margin-top: 10px;
+  font-size: 0.8em;
+}
+
+.donation-section {
+  background-color: var(--surface-color);
+  padding: 50px 0;
+  text-align: center;
+}
+
+.donation-button {
+  display: inline-block;
+  background-color: var(--secondary-color);
+  color: var(--text-color);
+  padding: 12px 30px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  margin-top: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.donation-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: all 0.5s;
+}
+
+.donation-button:hover::before {
+  left: 100%;
+}
+
+.donation-button:hover {
+  background-color: #ff4757;
+  transform: translateY(-3px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+footer {
+  background-color: var(--surface-color);
+  color: var(--text-color-secondary);
+  text-align: center;
+  padding: 40px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+footer::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+  animation: footerWave 10s linear infinite;
+  opacity: 0.05;
+}
+
+@keyframes footerWave {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+footer .container {
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 768px) {
+  body {
+    padding-top: 130px; /* Adjusted for mobile view */
+  }
+
+  .hero-content h1 {
+    font-size: 2.5em;
+  }
+  
+  .nav-links {
+    display: none;
+  }
+
+  .download-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .tutorial-step {
+    flex-basis: 100%;
+  }
+
+  header {
+    top: 80px; /* Adjusted for mobile view */
+  }
+
+  .free-banner {
+    padding: 5px 0;
+    font-size: 0.9em;
+  }
+}
+</style></head><body>
+<div class="free-banner">
+  🎉 LAP is completely FREE for everyone! No hidden costs, no subscriptions. 🎉
+</div>
+
+<header id="header">
+  <div class="container">
+    <nav>
+      <a href="#" class="logo">LAP</a>
+      <div class="nav-links">
+        <a href="#features">Features</a>
+        <a href="#tutorial">Tutorial</a>
+        <a href="#download">Download</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-content">
+    <h1>LAP: Local Advanced Paraphraser</h1>
+    <p>Unleash the power of AI-driven writing transformation, right on your device. Completely free!</p>
+    <a href="#download" class="cta-button">Get Started for Free</a>
+    <a href="#features" class="cta-button">Explore Features</a>
+  </div>
+</section>
+
+<section id="features" class="features">
+  <div class="container">
+    <h2>Revolutionize Your Writing - At No Cost!</h2>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🎭</div>
+        <h3>Undetectable AI Content</h3>
+        <p>Craft AI-generated text that seamlessly blends with human writing, fooling even the most sophisticated detection systems.</p>
+        <span class="feature-highlight">NEW!</span>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🏠</div>
+        <h3>Local Processing</h3>
+        <p>Experience lightning-fast paraphrasing with complete privacy, as all operations occur directly on your device.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🧠</div>
+        <h3>Advanced AI</h3>
+        <p>Harness the power of cutting-edge NLP for context-aware, intelligent paraphrasing that preserves meaning.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🎚️</div>
+        <h3>Precision Control</h3>
+        <p>Fine-tune the level of paraphrasing with our intuitive intensity slider, giving you complete control over the output.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📄</div>
+        <h3>Format Flexibility</h3>
+        <p>Effortlessly work with various file types, including .txt and .docx, streamlining your workflow.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">💯</div>
+        <h3>100% Free</h3>
+        <p>Enjoy all features without any cost. No subscriptions, no hidden fees - just powerful paraphrasing at your fingertips.</p>
+        <span class="feature-highlight">ALWAYS FREE</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="tutorial" class="tutorial-section">
+  <div class="container">
+    <h2>Master LAP in Minutes - For Free!</h2>
+    <p>Transform your text with these simple steps, all at no cost:</p>
+    <div class="tutorial-steps">
+      <div class="tutorial-step">
+        <img src="https://example.com/images/lap-step1-animated-dark.svg" alt="Animated GIF showing text being pasted into LAP interface" width="300" height="200">
+        <h3>1. Input Your Text</h3>
+        <p>Paste your original content or upload a document with a simple drag-and-drop.</p>
+      </div>
+      <div class="tutorial-step">
+        <img src="https://example.com/images/lap-step2-interactive-dark.svg" alt="Interactive SVG of LAP settings panel with hoverable elements" width="300" height="200">
+        <h3>2. Customize Your Paraphrase</h3>
+        <p>Adjust the paraphrasing intensity and select advanced options to suit your needs.</p>
+      </div>
+      <div class="tutorial-step">
+        <img src="https://example.com/images/lap-step3-realtime-dark.svg" alt="Animated SVG showing real-time paraphrasing with highlighted changes" width="300" height="200">
+        <h3>3. Generate & Refine</h3>
+        <p>Watch as LAP transforms your text in real-time, with the option to make further adjustments.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="download" class="download-section">
+  <div class="container">
+    <h2>Elevate Your Writing Today - For Free!</h2>
+    <p>Download LAP and experience the future of paraphrasing without spending a dime:</p>
+    <div class="download-buttons">
+      <a href="https://example.com/download/lap-installer.exe" class="cta-button">Download LAP (Free)</a>
+      <a href="https://github.com/LocalAdvancedParaphraser/releases/latest" class="cta-button">GitHub Release (Free)</a>
+    </div>
+  </div>
+</section>
+
+<section class="donation-section">
+  <div class="container">
+    <h2>Love LAP? Consider Supporting Us</h2>
+    <p>While LAP is and will always be free, your donations help us continue development and keep the lights on.</p>
+    <a href="https://example.com/donate" class="donation-button">Support Our Vision</a>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>&copy; 2023 TTATC - Tech Tantra AI Technology Company. Empowering writers worldwide, for free.</p>
+  </div>
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const header = document.getElementById('header');
+  const scrollThreshold = 100;
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > scrollThreshold) {
+      header.classList.add('scrolled');
+    } else {
+      header.classList.remove('scrolled');
+    }
+  });
+
+  const ctaButtons = document.querySelectorAll('.cta-button, .donation-button');
+  ctaButtons.forEach(button => {
+    button.addEventListener('click', function(e) {
+      if (this.getAttribute('href').startsWith('#')) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href').substring(1);
+        const targetElement = document.getElementById(targetId);
+        targetElement.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  });
+
+  const navLinks = document.querySelectorAll('.nav-links a');
+  navLinks.forEach(link => {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      const targetId = this.getAttribute('href').substring(1);
+      const targetElement = document.getElementById(targetId);
+      targetElement.scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+
+  const animateOnScroll = (entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('animate');
+        observer.unobserve(entry.target);
+      }
+    });
+  };
+
+  const observerOptions = {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.1
+  };
+
+  const observer = new IntersectionObserver(animateOnScroll, observerOptions);
+
+  const animatedElements = document.querySelectorAll('.feature-card, .tutorial-step');
+  animatedElements.forEach(el => observer.observe(el));
+
+  // Add parallax effect to hero section
+  const hero = document.querySelector('.hero');
+  window.addEventListener('scroll', () => {
+    const scrollPosition = window.pageYOffset;
+    hero.style.backgroundPositionY = scrollPosition * 0.7 + 'px';
+  });
+
+  // Animate the free banner
+  const freeBanner = document.querySelector('.free-banner');
+  setInterval(() => {
+    freeBanner.style.transform = 'scale(1.05)';
+    setTimeout(() => {
+      freeBanner.style.transform = 'scale(1)';
+    }, 200);
+  }, 3000);
+});
+</script>
+</body></html>
